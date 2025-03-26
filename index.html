@@ -67,9 +67,10 @@
     let allArticles = [];
 
     // Charger catégories + articles
-    fetch(https://script.google.com/macros/s/AKfycby_qPF7w2dbozk0mdY43GF4DoptWr7Cz9GhCxLjOfA5Ahkk_-5xhDsTj3ZaDB69gisQ/exec?action=categories)
+   fetch(scriptURL + "?action=categories")
       .then(res => res.json())
       .then(data => {
+         console.log("Catégories reçues :", data); // ← à ajouter
         allArticles = data;
         const categories = [...new Set(data.map(a => a[0]))];
         const selectCat = document.getElementById('category');
@@ -82,6 +83,7 @@
         });
       })
       .catch(err => {
+        console.error("Erreur FETCH :", err);
         document.getElementById("error").innerText = "Erreur chargement catégories : " + err.message;
       });
 
