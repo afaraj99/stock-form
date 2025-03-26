@@ -234,6 +234,19 @@
          lot: lot,
          peremption: peremption
        };
+fetch("https://script.google.com/macros/s/TON_DEPLOIEMENT/exec", {
+  method: "POST",
+  body: JSON.stringify({
+    article: document.getElementById("article").value,
+    quantite: document.getElementById("quantite").value
+  }),
+  headers: {
+    "Content-Type": "application/json"
+  }
+})
+.then(res => res.text())
+.then(msg => alert("Réponse serveur : " + msg))
+.catch(err => alert("Erreur : " + err));
 
 
        // Appel à la fonction serveur updateStockWithLot avec gestion du succès et de l'échec
